@@ -18,7 +18,7 @@ include $(srctree)/arch/arm64/boot/dts/Makefile
 
 OBJCOPYFLAGS_Image :=-O binary -R .note -R .note.gnu.build-id -R .comment -S
 
-targets := Image Image.bz2 Image.gz Image.lz4 Image.lzma Image.lzo dtbo.img dtb.img dtb
+targets := Image Image.bz2 Image.gz Image.lz4 Image.lzma Image.lzo dtbo.img dtb.img
 
 DTB_NAMES := $(subst $\",,$(CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE_NAMES))
 ifneq ($(DTB_NAMES),)
@@ -75,9 +75,6 @@ $(obj)/dtbo.img: $(DTBO_OBJS) FORCE
 
 $(obj)/dtb.img: $(DTB_OBJS) FORCE
 	$(call if_changed,cat)
-
-$(obj)/dtb: $(DTB_OBJS) FORCE
-        $(call if_changed,cat)
 
 install:
 	$(CONFIG_SHELL) $(srctree)/$(src)/install.sh $(KERNELRELEASE) \

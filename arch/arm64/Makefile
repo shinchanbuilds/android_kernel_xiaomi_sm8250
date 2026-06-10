@@ -153,15 +153,12 @@ ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 export DTC_FLAGS := -@
 endif
 
-all:	$(KBUILD_DTBS) $(KBUILD_TARGET) dtb
+all:	$(KBUILD_DTBS) $(KBUILD_TARGET)
 
 Image: vmlinux
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
 
 Image.%: Image
-	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
-
-dtb: dtbs
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
 
 zinstall install:
